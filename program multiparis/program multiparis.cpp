@@ -1,20 +1,55 @@
-// program multiparis.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+#include <string>
+using namespace std;
 
-int main()
-{
-    std::cout << "Hello World!\n";
-}
+class orang {
+public:
+	string nama;
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+	orang(string pNama) :
+		nama(pNama) {
+		cout << "orang dibuat\n" << endl;
+	}
+	~orang() {
+		cout << "orang dihapus\n" << endl;
+	}
+};
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+class manusia {
+public:
+	string JenisKelamin;
+
+	manusia(string pJenisKelamin) :
+		JenisKelamin(pJenisKelamin) {
+		cout << "manusia dibuat\n" << endl;
+	}
+	~manusia() {
+		cout << "manusia dihapus\n" << endl;
+	}
+}; 
+
+class pelajar : private manusia, public orang {
+public:
+	string sekolah;
+
+	pelajar(string pNama, string pJenisKelamin, string pSekolah) :
+		orang(pNama),
+		manusia(pJenisKelamin),
+		sekolah(pSekolah) {
+		cout << "pelajar dibuat\n" << endl;
+	}
+	~pelajar() {
+		cout << "pelajar dihapus\n" << endl;
+	}
+	string perkenalan() {
+		return "Hallo, nama saya " + nama + " dengan jenis kelamin "
+			+ JenisKelamin + " dari sekolah " + sekolah + "\n\n";
+	}
+};
+
+int main() {
+	pelajar siswa("andi laksono", " Laki-Laki", "SMAN 1 Bantul");
+	cout << siswa.perkenalan();
+
+	return 0;
+} 
